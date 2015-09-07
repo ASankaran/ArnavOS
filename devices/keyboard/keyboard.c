@@ -87,8 +87,8 @@ void keyboard_handler_main(void) {
 		if (capslock_enabled){
 			if (ascii_key >= 97 && ascii_key <= 122) {
 				print_char(ascii_key - 32);
+				return;
 			}
-			return;
 		}
 		print_char(ascii_key);
 	}
