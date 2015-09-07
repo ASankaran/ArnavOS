@@ -8,3 +8,5 @@ void print_char(unsigned char c);
 void print_newline(void);
 void print_backspace(void);
 void clear_screen(void);
+void move_cursor(int row, int col);
+void update_cursor(void);
