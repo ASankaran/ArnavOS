@@ -7,6 +7,12 @@
 #define ENTER_KEY_CODE 0x1C
 #define CAPS_LOCK_KEY_CODE 0x3A
 #define BACKSPACE_KEY_CODE 0x0E
+#define LEFT_SHIFT_PRESSED_KEY_CODE 0x2A
+#define RIGHT_SHIFT_PRESSED_KEY_CODE 0x36
+//The release code's are non standard.
+//The set of bits is being improoperly converted to an int.
+#define RIGHT_SHIFT_RELEASED_KEY_CODE 0x56
+#define LEFT_SHIFT_RELEASED_KEY_CODE 0x4A
 
 extern unsigned char keyboard_map[128];
 extern void keyboard_handler(void);

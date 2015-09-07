@@ -33,6 +33,22 @@ void print_backspace(void) {
 	update_cursor();
 }
 
+//Currently prints numbers in reverse.
+void print_integer(int n) {
+	unsigned char integer_map[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+	if (n < 0) {
+		print_char('-');
+		n *= -1;
+	}
+	if (n < 10) {
+		print_char(integer_map[n]);
+	} else {
+		print_char(integer_map[n % 10]);
+		print_integer(n / 10);
+	}
+}
+
 void clear_screen(void) {
 	unsigned int i = 0;
 	while (i < SCREENSIZE) {

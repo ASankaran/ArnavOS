@@ -6,6 +6,7 @@
 void print_string(const char *str);
 void print_char(unsigned char c);
 void print_newline(void);
+void print_integer(int n);
 void print_backspace(void);
 void clear_screen(void);
 void move_cursor(int row, int col);

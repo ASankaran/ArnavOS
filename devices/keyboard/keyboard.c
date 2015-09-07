@@ -52,6 +52,7 @@ void keyboard_init(void) {
 }
 
 unsigned int capslock_enabled = 0;
+unsigned int shift_enabled = 0;
 
 void keyboard_handler_main(void) {
 	write_port(0x20, 0x20);
@@ -59,9 +60,13 @@ void keyboard_handler_main(void) {
 	unsigned char status = read_port(KEYBOARD_STATUS_PORT);
 
 	if (status & 0x01) {
-		char keycode = read_port(KEYBOARD_DATA_PORT);
-		if (keycode < 0)
+		int keycode = read_port(KEYBOARD_DATA_PORT);
+		if (keycode < 0) {
+			if (keycode * -1 == RIGHT_SHIFT_RELEASED_KEY_CODE || keycode * -1 == LEFT_SHIFT_RELEASED_KEY_CODE) {
+				shift_enabled = 0;
+			}
 			return;
+		}
 
 		if (keycode == ENTER_KEY_CODE) {
 			print_newline();
@@ -82,6 +87,11 @@ void keyboard_handler_main(void) {
 			return;
 		}
 
+		if (keycode == LEFT_SHIFT_PRESSED_KEY_CODE || keycode == RIGHT_SHIFT_PRESSED_KEY_CODE) {
+			shift_enabled = 1;
+			return;
+		}
+
 		unsigned char ascii_key = keyboard_map[(unsigned char) keycode];
 
 		if (capslock_enabled){
@@ -89,6 +99,11 @@ void keyboard_handler_main(void) {
 				print_char(ascii_key - 32);
 				return;
 			}
+		}
+
+		if (shift_enabled) {
+			print_char(keyboard_map_shifted[(unsigned char) keycode]);
+			return;
 		}
 		print_char(ascii_key);
 	}
