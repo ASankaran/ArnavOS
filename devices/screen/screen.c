@@ -21,6 +21,11 @@ void print_newline(void) {
 	current_loc = current_loc + (line_size - current_loc % (line_size));
 }
 
+void print_backspace(void) {
+	vidptr[--current_loc] = 0x07;
+	vidptr[--current_loc] = ' ';
+}
+
 void clear_screen(void) {
 	unsigned int i = 0;
 	while (i < SCREENSIZE) {

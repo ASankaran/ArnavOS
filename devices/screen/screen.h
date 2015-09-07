@@ -6,4 +6,5 @@
 void print_string(const char *str);
 void print_char(unsigned char c);
 void print_newline(void);
+void print_backspace(void);
 void clear_screen(void);

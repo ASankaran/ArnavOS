@@ -60,20 +60,25 @@ void keyboard_handler_main(void) {
 
 	if (status & 0x01) {
 		char keycode = read_port(KEYBOARD_DATA_PORT);
-		if(keycode < 0)
+		if (keycode < 0)
 			return;
 
-		if(keycode == ENTER_KEY_CODE) {
+		if (keycode == ENTER_KEY_CODE) {
 			print_newline();
 			return;
 		}
 
-		if(keycode == CAPS_LOCK_KEY_CODE) {
+		if (keycode == CAPS_LOCK_KEY_CODE) {
 			if (capslock_enabled) {
 				capslock_enabled = 0;
 			} else {
 				capslock_enabled = 1;
 			}
+			return;
+		}
+
+		if (keycode == BACKSPACE_KEY_CODE) {
+			print_backspace();
 			return;
 		}
 

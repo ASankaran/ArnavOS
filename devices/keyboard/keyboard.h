@@ -6,6 +6,7 @@
 
 #define ENTER_KEY_CODE 0x1C
 #define CAPS_LOCK_KEY_CODE 0x3A
+#define BACKSPACE_KEY_CODE 0x0E
 
 extern unsigned char keyboard_map[128];
 extern void keyboard_handler(void);
