@@ -5,6 +5,7 @@
 #define IDT_SIZE 256
 
 #define ENTER_KEY_CODE 0x1C
+#define CAPS_LOCK_KEY_CODE 0x3A
 
 extern unsigned char keyboard_map[128];
 extern void keyboard_handler(void);

@@ -51,6 +51,8 @@ void keyboard_init(void) {
 	write_port(0x21 , 0xFD);
 }
 
+unsigned int capslock_enabled = 0;
+
 void keyboard_handler_main(void) {
 	write_port(0x20, 0x20);
 
@@ -66,6 +68,23 @@ void keyboard_handler_main(void) {
 			return;
 		}
 
-		print_char(keyboard_map[(unsigned char) keycode]);
+		if(keycode == CAPS_LOCK_KEY_CODE) {
+			if (capslock_enabled) {
+				capslock_enabled = 0;
+			} else {
+				capslock_enabled = 1;
+			}
+			return;
+		}
+
+		unsigned char ascii_key = keyboard_map[(unsigned char) keycode];
+
+		if (capslock_enabled){
+			if (ascii_key >= 97 && ascii_key <= 122) {
+				print_char(ascii_key - 32);
+			}
+			return;
+		}
+		print_char(ascii_key);
 	}
 }
