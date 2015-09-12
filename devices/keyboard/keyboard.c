@@ -1,6 +1,5 @@
 #include "keyboard.h"
 #include "keyboard_map.h"
-#include "../screen/screen.h"
 #include "../../terminal/terminal.h"
 
 struct IDT_entry {
