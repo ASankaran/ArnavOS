@@ -3,10 +3,10 @@
 
 void kernel_main(void) {
 	const char *str = "ArnavOS with keyboard support.";
-	clear_screen();
-	print_string(str);
-	print_newline();
-	print_newline();
+	kernel_clear_screen();
+	kernel_print_string(str);
+	kernel_print_newline();
+	kernel_print_newline();
 
 	idt_init();
 	keyboard_init();

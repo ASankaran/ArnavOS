@@ -69,7 +69,7 @@ void keyboard_handler_main(void) {
 		}
 
 		if (keycode == ENTER_KEY_CODE) {
-			print_newline();
+			kernel_print_newline();
 			return;
 		}
 
@@ -83,7 +83,7 @@ void keyboard_handler_main(void) {
 		}
 
 		if (keycode == BACKSPACE_KEY_CODE) {
-			print_backspace();
+			kernel_print_backspace();
 			return;
 		}
 
@@ -96,15 +96,15 @@ void keyboard_handler_main(void) {
 
 		if (capslock_enabled){
 			if (ascii_key >= 97 && ascii_key <= 122) {
-				print_char(ascii_key - 32);
+				kernel_print_char(ascii_key - 32);
 				return;
 			}
 		}
 
 		if (shift_enabled) {
-			print_char(keyboard_map_shifted[(unsigned char) keycode]);
+			kernel_print_char(keyboard_map_shifted[(unsigned char) keycode]);
 			return;
 		}
-		print_char(ascii_key);
+		kernel_print_char(ascii_key);
 	}
 }
