@@ -1,6 +1,7 @@
 #include "keyboard.h"
 #include "keyboard_map.h"
 #include "../screen/screen.h"
+#include "../../terminal/terminal.h"
 
 struct IDT_entry {
 	unsigned short int lowerbits_offset;
@@ -69,7 +70,7 @@ void keyboard_handler_main(void) {
 		}
 
 		if (keycode == ENTER_KEY_CODE) {
-			kernel_print_newline();
+			add_newline_to_terminal();
 			return;
 		}
 
@@ -83,7 +84,7 @@ void keyboard_handler_main(void) {
 		}
 
 		if (keycode == BACKSPACE_KEY_CODE) {
-			kernel_print_backspace();
+			add_backspace_to_terminal();
 			return;
 		}
 
@@ -96,15 +97,15 @@ void keyboard_handler_main(void) {
 
 		if (capslock_enabled){
 			if (ascii_key >= 97 && ascii_key <= 122) {
-				kernel_print_char(ascii_key - 32);
+				add_char_to_terminal(ascii_key - 32);
 				return;
 			}
 		}
 
 		if (shift_enabled) {
-			kernel_print_char(keyboard_map_shifted[(unsigned char) keycode]);
+			add_char_to_terminal(keyboard_map_shifted[(unsigned char) keycode]);
 			return;
 		}
-		kernel_print_char(ascii_key);
+		add_char_to_terminal(ascii_key);
 	}
 }
