@@ -33,20 +33,38 @@ void kernel_print_backspace(void) {
 	kernel_update_cursor();
 }
 
-//Currently prints numbers in reverse.
-void kernel_print_integer(int n) {
-	unsigned char integer_map[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+void kernel_print_integer(int num) {
+	char buf[64];
 
-	if (n < 0) {
-		kernel_print_char('-');
-		n *= -1;
+	int length = 0;
+
+	int isNegative = 0;
+
+	if(num < 0) {
+		length++;
+		isNegative = 1;
+		buf[0] = '-';
+		num *= -1;
 	}
-	if (n < 10) {
-		kernel_print_char(integer_map[n]);
-	} else {
-		kernel_print_char(integer_map[n % 10]);
-		kernel_print_integer(n / 10);
+
+	int n = num;
+	while(n != 0) {
+		length++;
+		n /= 10;
 	}
+
+	int rem = 0;
+	int i = 0;
+	
+	while(isNegative ? i + 1 < length: i < length) {
+		rem = num % 10;
+		num /= 10;
+		buf[length - i - 1] = rem + '0';
+		i++;
+	}
+	buf[length] = '\0';
+
+	kernel_print_string(buf);
 }
 
 void kernel_clear_screen(void) {
