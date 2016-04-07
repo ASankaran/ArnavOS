@@ -1,6 +1,6 @@
 ArnavOS (Bare Metal Programming)
 =====================
-Copyright 2015 Arnav Sankaran
+Copyright (c) 2016 Arnav Sankaran
 
 ArnavOS is in-progress kernel / bare metal program capable of booting on the x86 architecture.
 
@@ -13,4 +13,4 @@ Functionality
 
 Screenshots
 ---------------------
-![ArnavOS HelloWorld.png](http://i.imgur.com/f4DvUWH.png)
+![ArnavOS HelloWorld.png](http://i.imgur.com/SFr8Aov.gif)
